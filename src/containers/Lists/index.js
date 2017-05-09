@@ -1,23 +1,9 @@
 import React from 'react';
 import TodoGrid from '../../components/TodoGrid';
-
-const todoLists = [
-  {
-    id: 1,
-    title: 'Shopping List'
-  },
-  {
-    id: 2,
-    title: 'Getting Dressed'
-  },
-  {
-    id: 3,
-    title: 'Refresh React'
-  }
-];
+import todoLists from '../../services/todoLists';
 
 const Lists = () => (
-    <TodoGrid todoLists={todoLists} />
+    <TodoGrid todoLists={todoLists.get()} />
 );
 
 export default Lists;
