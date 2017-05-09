@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import List from '../../components/List';
+import { actions } from '../App/reducers';
 
 class TodoList extends Component {
 
@@ -17,6 +18,7 @@ class TodoList extends Component {
         return (
             <div>
                 <Link to={'/'}><p>Back</p></Link>
+                <p onClick={() => this.props.todoListsAdd(1, 'Test')}>test</p>
                 <List title={list.title} items={list.items} />
             </div>
         );
@@ -27,4 +29,4 @@ const mapStateToProps = (state) => ({
     todoLists: state.todoLists
 })
 
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps, actions)(TodoList);
