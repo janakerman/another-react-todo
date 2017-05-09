@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { actions } from './reducers';
 
 import Header from '../../components/Header';
 import Lists from '../Lists';
 import List from '../List';
 
-const title = "React Todo";
+class App extends Component {
 
-const App = ({todoLists = []}) => (
-  <Router>
-    <div>
-      <Header title={title} />
-      <Route exact path="/" component={Lists} />
-      <Route path="/list/:id" component={List} />
-    </div>
-  </Router>
-)
+  componentDidMount() {
+    this.props.todoListsFetch();
+  }
 
-export default App;
+  render() {
+    return (
+      <Router>
+        <div>
+          <Header title="React Todo" />
+          <Route exact path="/" component={Lists} />
+          <Route path="/list/:id" component={List} />
+        </div>
+      </Router>
+    );
+  }
+
+}
+
+const mapStateToProps = (state) => ({
+  error: state.error,
+  isLoading: state.isLoading
+});
+
+export default connect(mapStateToProps, actions)(App);

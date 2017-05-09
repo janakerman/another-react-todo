@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import TodoGridTile from '../TodoGridTile';
 
-const TodoGrid = ({todoLists = [], match}) => (
+const TodoGrid = ({todoLists = []}) => (
     <ul>
         {todoLists.map(list => 
             <li key={list.id}>

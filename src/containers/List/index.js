@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import todoLists from '../../services/todoLists';
 import TodoList from '../../components/TodoList';
 
 class List extends Component {
 
-    constructor(props) {
-        super(props);
-        this.list = todoLists.find(parseInt(props.match.params.id, 10));
-    }
-
     render() {
-        return (
-            <div>
-                <p>{this.list.title}</p>
-                <TodoList todos={this.list.items}/>
-            </div>
-        )
+        const todoLists = this.props.todoLists ? this.props.todoLists : [];
+        const list = todoLists.find(list => list.id == parseInt(this.props.match.params.id, 10));
+
+        return <TodoList todoList={list}/>;
     }
 }
 
-export default List;
+const mapStateToProps = (state) => ({
+    todoLists: state.todoLists
+})
+
+export default connect(mapStateToProps)(List);

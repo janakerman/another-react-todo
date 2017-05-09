@@ -1,9 +1,14 @@
 import React from 'react';
-import TodoGrid from '../../components/TodoGrid';
-import todoLists from '../../services/todoLists';
+import { connect } from 'react-redux';
 
-const Lists = () => (
-    <TodoGrid todoLists={todoLists.get()} />
+import TodoGrid from '../../components/TodoGrid';
+
+const Lists = ({todoLists}) => (
+    <TodoGrid todoLists={todoLists} />
 );
 
-export default Lists;
+const mapStateToProps = (state) => ({
+    todoLists: state.todoLists
+});
+
+export default connect(mapStateToProps)(Lists);

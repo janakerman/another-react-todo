@@ -78,13 +78,19 @@ const todoLists = [
 class TodoService {
 
     get() {
-        return todoLists;
-    }
+      return new Promise((resolve) => {
+        setTimeout(() => {
 
-    find(id) {
-      return todoLists.find(list => list.id === id);
-    }
+          const response = {
+            ok: true,
+            json: () => todoLists
+          };
 
+          resolve(response);
+          
+        }, 1000);
+      });
+    }
 }
 
 export default new TodoService();
