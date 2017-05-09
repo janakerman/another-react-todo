@@ -1,14 +1,18 @@
 import React from 'react';
-import TodoGridTile from '../TodoGridTile'
+import { Link } from 'react-router-dom';
 
-const TodoGrid = ({todoLists = []}) => (
+import TodoGridTile from '../TodoGridTile';
+
+const TodoGrid = ({todoLists = [], match}) => (
     <ul>
-        {todoLists.map((list, i) => 
-            <li key={i}>
-                <TodoGridTile title={list.title} />
+        {todoLists.map(list => 
+            <li key={list.id}>
+                <Link to={`/list/${list.id}`}>
+                    <TodoGridTile title={list.title} />
+                </Link>
             </li>
         )}
     </ul>
-)
+);
 
-export default TodoGrid
+export default TodoGrid;
