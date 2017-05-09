@@ -3,8 +3,8 @@ import TodoGridTile from '../TodoGridTile'
 
 const TodoGrid = ({todoLists = []}) => (
     <ul>
-        {todoLists.map(list => 
-            <li>
+        {todoLists.map((list, i) => 
+            <li key={i}>
                 <TodoGridTile title={list.title} />
             </li>
         )}
