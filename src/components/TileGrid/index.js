@@ -1,13 +1,20 @@
 import React from 'react';
 
-const TileGrid = ({items = [], titleSelector = () => {}, itemClicked = () => {}}) => (
-    <ul>
-        {items.map((item, i) => 
-            <li key={i}>
-                <h1 onClick={() => itemClicked(i)}>{titleSelector(item)}</h1>
-            </li>
-        )}
-    </ul>
+import './TileGrid.css';
+
+import Panel from '../Panel';
+
+const TileGrid = ({items = [], titleSelector = () => {}, itemClicked = () => {}}) => (    
+    <div>
+        <h1 className="text-center">My Lists</h1>
+        <div className="tile-grid">
+            {items.map((item, i) => 
+                <Panel key={i} clicked={() => itemClicked(i)}>
+                    <h1>{titleSelector(item)}</h1>
+                </Panel>
+            )}
+        </div>
+    </div>
 );
 
 export default TileGrid;

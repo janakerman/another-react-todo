@@ -31,7 +31,13 @@ class App extends Component {
       <Router>
         <div>
           <Header title="React Todo" />
-          { content }
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-offset-2 col-xs-8">
+                { content }
+              </div>
+            </div>
+          </div>
         </div>
       </Router>
     );

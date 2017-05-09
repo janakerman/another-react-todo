@@ -1,0 +1,22 @@
+.tile-grid {
+    display: flex;
+}
+
+.tile-grid .panel {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 30px;
+}
+
+.tile-grid .panel:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.tile-grid h1 {
+    font-size: 18px;
+}
+
+.tile-grid h1 {
+    font-size: 18px;
+}
