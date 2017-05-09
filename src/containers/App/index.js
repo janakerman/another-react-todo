@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { actions } from './reducers';
 
 import Header from '../../components/Header';
+import LoadingIndicator from '../../components/LoadingIndicator';
 import Lists from '../Lists';
 import List from '../List';
 
@@ -14,12 +15,23 @@ class App extends Component {
   }
 
   render() {
+
+    let content = (
+      <div>
+        <Route exact path="/" component={Lists} />
+        <Route path="/list/:id" component={List} />
+      </div>
+    );
+      
+    if (this.props.isLoading) {
+      content = <LoadingIndicator />;
+    }
+
     return (
       <Router>
         <div>
           <Header title="React Todo" />
-          <Route exact path="/" component={Lists} />
-          <Route path="/list/:id" component={List} />
+          { content }
         </div>
       </Router>
     );
