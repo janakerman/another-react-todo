@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import List from '../../components/List';
 
@@ -13,7 +14,12 @@ class TodoList extends Component {
             return null;
         }
 
-        return <List title={list.title} items={list.items} />;
+        return (
+            <div>
+                <Link to={'/'}><p>Back</p></Link>
+                <List title={list.title} items={list.items} />
+            </div>
+        );
     }
 }
 
