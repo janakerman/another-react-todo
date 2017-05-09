@@ -2,9 +2,9 @@ import React from 'react';
 import './Header.css';
 
 const Header = ({title = ""}) => (
-    <div className="app-header">
+    <nav className="app-header">
           <h1>{title}</h1>
-    </div>
+    </nav>
 )
 
 export default Header;

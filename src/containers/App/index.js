@@ -5,8 +5,8 @@ import { actions } from './reducers';
 
 import Header from '../../components/Header';
 import LoadingIndicator from '../../components/LoadingIndicator';
-import Lists from '../Lists';
-import List from '../List';
+import TodoListGrid from '../TodoListGrid';
+import TodoList from '../TodoList';
 
 class App extends Component {
 
@@ -18,8 +18,8 @@ class App extends Component {
 
     let content = (
       <div>
-        <Route exact path="/" component={Lists} />
-        <Route path="/list/:id" component={List} />
+        <Route exact path="/" component={TodoListGrid} />
+        <Route path="/list/:id" component={TodoList} />
       </div>
     );
       
