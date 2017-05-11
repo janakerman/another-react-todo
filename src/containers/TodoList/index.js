@@ -8,8 +8,10 @@ import { actions } from '../App/reducers';
 class TodoList extends Component {
 
     render() {
+        const listId = parseInt(this.props.match.params.id, 10);
+
         const todoLists = this.props.todoLists ? this.props.todoLists : [];
-        const list = todoLists.find(list => list.id === parseInt(this.props.match.params.id, 10));
+        const list = todoLists.find(list => list.id === listId);
 
         if (!list) {
             return null;
@@ -18,7 +20,7 @@ class TodoList extends Component {
         return (
             <div>
                 <Link to={'/'}><p>Back</p></Link>
-                <p onClick={() => this.props.todoListsAdd(1, 'Test')}>test</p>
+                <p onClick={() => this.props.todoListsAdd(listId, 'Test')}>test</p>
                 <List title={list.title} items={list.items} />
             </div>
         );

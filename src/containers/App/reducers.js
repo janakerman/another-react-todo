@@ -1,9 +1,9 @@
 import todoListService from '../../services/todoLists';
+import todoListReducer, { TODO_LIST_ADD } from '../TodoList/reducers';
 
 const TODO_FETCH_LOADING = 'TODO_FETCH_LOADING';
 const TODO_FETCH_SUCCESS = 'TODO_FETCH_SUCCESS';
 const TODO_FETCH_ERROR = 'TODO_FETCH_ERROR';
-const TODO_LIST_ADD = 'TODO_LIST_ADD';
 
 const initial = {
     todoLists: [],
@@ -31,30 +31,16 @@ const appReducer = (state = initial, action) => {
                 error: action.error
             };
         case TODO_LIST_ADD:
-            // This feels so wrong (super verbose for learning purposes).
-            // Get the lists from the state
-            const todoLists = state.todoLists;
             // Find the index of the list we want to update.
-            const listToAddIndex = todoLists.findIndex(list => list.id === action.listId);
-            // This is the old list.
-            const oldList = todoLists[listToAddIndex];
-            // Create a new list item.
-            const newItem = { title: action.todoTitle };
-            const newItems = [...oldList.items, newItem];
-            // Copy the updated item list into the new list.
-            const newList = {...oldList, items: newItems };
-
-            // Copy the lists object..
-            const newTodoLists = [
-                ...todoLists
-            ];
-
-            // And replace the todos
-            newTodoLists.splice(listToAddIndex, 1, newList);
-
+            const listToAddIndex = state.todoLists.findIndex(list => list.id === action.listId);
+            const listToAdd = state.todoLists[listToAddIndex];
             return {
                 ...state,
-                todoLists: newTodoLists
+                todoLists: [
+                    ...state.todoLists.slice(0, listToAddIndex),
+                    todoListReducer(listToAdd, action),
+                    ...state.todoLists.slice(listToAddIndex + 1)
+                ]
             };
         default:
             return state;
